@@ -1,0 +1,19 @@
+.wrapper{
+    width: 100%;
+    height: 100vh;
+    background: rgb(186,124,208);
+    background: radial-gradient(circle, rgba(186,124,208,1) 0%, rgba(148,187,233,1) 100%);
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.mainIcon{
+    font-size: 150px;
+    color:white;
+}
+.iconStyle{
+    color:white;
+    position: relative;
+    left: 20px;
+}
