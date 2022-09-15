@@ -13,7 +13,7 @@ import { AiOutlineLock } from 'react-icons/ai';
 import {dataBase} from './../../DataBase/index'
 
 export const MainPage =  () => {
-    const [access,setAccess] = useState()
+    const [access,setAccess] = useState(false)
     const [noAccess,setNoAccess] = useState()
     const [emailPass,setEmailPass] = useState(
         {
@@ -23,12 +23,6 @@ export const MainPage =  () => {
     const pass = dataBase.find(
         (el) => el.email == emailPass.email && el.password == emailPass.password
     )
-    if(!pass){
-        setAccess(true)
-    }
-    if(pass){
-        setNoAccess(true)
-    }
   return (
     <>
         <div className = 'wrapper'>
@@ -84,30 +78,32 @@ export const MainPage =  () => {
                 onButtonClick = {(e) => {
                     e.preventDefault()
                     if(!pass){
-                        {console.log(false)}
-                        return(
-                            <AccessBox 
-                                text = 'Wrong username or password'
-                                backgroundColor = 'red'
-                                height = '200px'    
-                            />  
-                        )
+                        setAccess(false)
+                        setNoAccess(true)
                     }
                     if(pass){
-                        {console.log(true)}
-                        return(                   
-                            <AccessBox 
-                                text = 'Access'
-                                backgroundColor = 'green'
-                                height = '200px'
-                                width = '500px'
-                            />  
-                        )
+                        setAccess(true)
+                        setNoAccess(false)
                     }
                 }    
                 }
             /> 
-            
+            {access&& 
+                <AccessBox 
+                        text = 'Access'
+                        backgroundColor = 'green'
+                        height = '200px'    
+                        width = '200px'
+                />
+            }
+            {noAccess&& 
+                <AccessBox 
+                        text = 'Wrong username or password'
+                        backgroundColor = 'red'
+                        height = '200px'  
+                        width = '200px'  
+                />
+            }
             </form>
         </div>
     </>
